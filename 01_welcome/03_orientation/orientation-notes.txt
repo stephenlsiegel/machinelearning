@@ -1,2 +1,15 @@
 ========== ORIENTATION NOTES ==========
 
+Focus is on learning by doing projects. Most students go through the course material thoroughly.
+
+You will have opportunity to receive reviews of your resume, LinkedIn profile, and GitHub. There are also career workshops and forums for career-related questions. Fill out the career section of your Udacity profile!
+
+How does project submission work?
+	- You submit, Udacity reviews and you will get feedback.
+	- You can submit as many times as you need to.
+
+What happens if you move faster than your timeline? You finish faster and pay less!
+
+
+
+-- Fill out the career section of your Udacity profile.

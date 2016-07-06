@@ -1,4 +1,4 @@
-Notes on Getting Started
+Notes on Getting Started: From Artificial Intelligence to Machine Learning
 
 Objective: obtain a conceptual understanding of machine learning.
 
@@ -47,7 +47,7 @@ The Four Schools of AI
 				thinking
 				  |
 				  |
-	optimally	-----	like humans
+	optimally  -------	like humans
 				  |
 				  |
 				acting
@@ -75,5 +75,127 @@ Basic Data Scientist Skills:
 		
 ========== From AI to Machine Learning ==========
 
+Definition / Philosophy of Machine Learning 
+
+machine learning: broad notion of building computational artifacts that learn over time based on experience.
+
+### supervised learning: mapping inputs to outputs (function approximation)
+		induction: going from specifics to generalities (did the sun rise today? yesterday? day before? We assume sun always rises.)
+		deduction: going from generalities to specifcs (eg let A imply B. Assume A. What do we know? B.)
+
+		so supervised learning is function induction.
+
+		rule: if it is cloudy, it rains
+		cause: it is cloudy
+		effect: it rains
+
+			  RULE
+			    |
+		 ---------------
+		|               |	  
+		cause ---> effect
 
 
+		deduction: given the rule and cause, deduce the effect (think about cloudy/rains example)
+		induction: give a cause and effect, induce a rule (does it ever rain when it is not cloudy?)
+		abduction: give a rule and an effect, abduce a cause (think again about cloud/rain example)
+
+		Generally: we observe effects, abduce causes, and from that induce a rule.
+
+### unsupervised learning: description/summarization
+
+### reinforcement learning: learning from delayed reward (video gives tic-tac-toe example)
+
+
+========== Machine Learning in Action ==========
+
+Video on Stanley, self-driving car that won the DARPA grand challenge
+
+Video on health care. Hope is big data can lead to better care and lower cost (really uninformative video).
+
+
+========== Basic Terminology ==========
+
+What?
+	parameters
+	structure
+	hidden concepts
+What From?
+	supervised
+	unsupervised
+	reinforcement
+What For?
+	prediction
+	diagnostics
+	summarization
+How?
+	passive
+	active
+	online
+	offline (after data is generated)
+Outputs?
+	classification (discrete, fixed number of classes)
+	regression (continuous)
+Details?
+	generative
+	discriminative
+
+========== Quiz ==========
+
+### Supervised Learning
+
+X1, X2, X3, ... , Xn -> Y
+
+in supervised learning, given many vectors Xm, we want to develop function f(Xm) = Ym, which we can then run on future X.
+
+Occam's Razor: everything else being equal, choose the less complex hypothesis.
+
+There is a tradeoff between fit and low complexity.
+
+### Spam Detection
+
+We get an email, want to create function to categorize it as Spam or Ham.
+
+How do we turn an email into data?
+
+Bag of words: counts the frequency of words.
+	example: "hello I will say hello" becomes the dictionary {"hello":2, "I":1, "will":1, "say":1}
+
+Example:
+
+Spam messages
+	- offer is secret
+	- click secret link
+	- secret sports link
+
+Ham messages
+	- play sports today
+	- went play sports
+	- secret sports event
+	- secret sports event
+	- sports is today
+	- sports costs money
+
+unique words: offer is secret click link sports play today went event costs money = 12 words
+
+### Classification vs. Regression
+
+classification: the target class Y is discrete.
+
+In problems where Y is continuous (eg Y is an element of [0,1]), it becomes a regression problem.
+
+### Linear Regression
+
+Data is an input vector of length n that map to Y
+
+X11, X12, ... , X1n -> Y1
+.
+.
+.
+Xm1, Xm2, ... , Xmn -> Ym
+
+In 1 dimensional space, f(x) = w1 * x + w0
+
+Loss = sum (over j) of (Yj - w1 * xj - w0)^2
+
+solution to linear regression problem minimizes the loss function (minimizes the sum of the squared difference between actual and predicted value.)

@@ -1,0 +1,79 @@
+Notes on Getting Started
+
+Objective: obtain a conceptual understanding of machine learning.
+
+========== Machine Learning and AI ==========
+
+Conundrums in AI
+
+1. Intelligent agents have limited resources - processing speed, memory size, etc.
+2. Computation is local, but problems have global contraints.
+3. Logic is deductive, but many problems are not.
+4. The world is dynamic, but knowledge is limited.
+5. Problem solving, reasoning, and learning are complex. Explanation and justification add to the complexity.
+
+Characteristics of AI Problems
+
+1. Data often arrives incrementally, not all at the beginning.
+2. Problems exhibit recurring patterns.
+3. Problems have multiple levels of granularity.
+4. Many problems are computationally intractable.
+5. The world is dynamic, but knowledge of the world is static.
+6. The world is open-ended, but knowledge is limited.
+
+AI as a Technique of Uncertainty Management
+
+AI is what to do when you don't know what to do. Reasons for uncertainty:
+	1. sensor limits
+	2. adversaries
+	3. stochastic environments
+	4. laziness
+	5. ignorance
+	
+Which of these are AI problems:
+	- Answering questions on Jeopardy?
+	- Configuring the dimensions for the basement of a new house?
+	- Tying shoelaces?
+	- Deciding on a route to a new destination?
+	- Making sense of a news broadcast?
+	- Designing a robot that walks on water?
+	- Establishing whether a flower pot can be used as a drinking cup?
+	- Deciding whether or not a new animal is a bird?
+Answer: each of these could be an AI problem.
+
+Three Fundamental AI Processes: Reasoning, Learning, Memory
+
+The Four Schools of AI
+				thinking
+				  |
+				  |
+	optimally	-----	like humans
+				  |
+				  |
+				acting
+				
+We can think of AI agents that are optimal or think like humans.
+
+1. Agents that think optimally. (machine learning)
+2. Agents that think like humans. (semantic web)
+3. Agents that act like humans. (improvisational robots)
+4. Agents that act optimally. (airplane autopilot)
+
+Knowledge-Based AI: we are interested in agents that think like humans.
+
+
+========== Machine Learning and Data Science ==========
+
+Data scientists are people who have a blend of math & stats, hacking skills, and substantive expertise.
+
+Basic Data Scientist Skills:
+	- Substantive expertise:
+		- knows which questions to ask
+		- can interpret the data well
+		- understands structure of the data
+
+		
+========== From AI to Machine Learning ==========
+
+
+

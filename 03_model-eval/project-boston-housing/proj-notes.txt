@@ -1,0 +1,10 @@
+### Boston Housing Prices Project - Overview ###
+
+Data: housing prices in the Boston, MA area.
+
+Tasks:
+	1. Explore data to obtain important features and descriptive statistics.
+	2. Split data into training and testing sets, determine suitable performance metric.
+	3. Analyze performance graphs for a learning algorithm with varying parameters and training set sizes.
+	4. Pick the optimal model that best generalizes to unseen data.
+	5. Test model on new smaple.

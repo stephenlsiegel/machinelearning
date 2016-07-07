@@ -26,3 +26,177 @@ At the end of the unit, you'll do a project on building a model to fit some data
 
 Outlier:	< Q1 - 1.5 * IQR
 			> Q3 + 1.5 * IQR
+
+
+========== scikit-learn Tutorial ==========
+
+We will walk through an example with a Gaussian Naive Bayes model.
+
+### Example from sklearn documentation (try running this in Python):
+
+>>> import numpy as np
+>>> X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
+>>> Y = np.array([1, 1, 1, 2, 2, 2])
+>>> from sklearn.naive_bayes import GaussianNB
+>>> clf = GaussianNB()
+>>> clf.fit(X, Y)
+GaussianNB()
+>>> print(clf.predict([[-0.8, -1]]))
+[1]
+
+
+========== Evaluation Metrics ==========
+
+We need to pick a performance metric to test how well our model is performing.
+
+### Classification / Regression
+
+classification: deciding which categories new instances belong to. (discrete)
+	- evaluation metric: how often we correctly/incorrectly identify a new example
+
+regression: making predictions on continuous data. (continuous)
+	- evaluation metric: how far off the model's prediction is from the true value
+
+### Classification Metrics
+
+# Accuracy: # of items classified correctly / total # of items
+	- default metric used in the .score() method for classifiers in sklearn
+	- documentation: http://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score
+
+	Shortcomings of Accuracy
+		- not ideal for skewed classes
+		- may want to err on side of guessing one way (eg. "innocent", "survived")
+		- in many scenarios, we care about some outcomes more than others (eg. cancer diagnosis), so we care about which type of mistakes we're making (type I, type II errors)
+
+# Confusion Matrix
+
+# Precision and Recall
+
+Recall: accurately predicted / total true values = true positives / (true positives + false negatives)
+
+Precision:  accurately predicted / total predicted values = true positives / (true positives + false positives)
+
+# F1 Score
+
+We can think of F1 score as a weighted average of the precision and recall, where F1 is best at 1 and worst at 0.
+
+F1 = 2 * (precision * recall) / (precision + recall)
+
+### Regression Metrics
+
+# Mean Absolute Error = mean of absolute_value(prediction - acutal)
+
+# Mean Squared Error = mean of (prediction - acutal)^
+	- we tend to prefer MSE because it emphasizes larger errors over smaller errors and it is differentiable.
+
+Two metrics in sklearn:
+	- R2 score
+	- explained variance score
+
+
+========== Causes of Error ==========
+
+Error due to Bias
+	- Model has enough data but is not complex enough to capture the underlying relationships. 
+	- This is underfitting.
+	- Example: we have objects that are classified by color and shape, like easter eggs, but our model can only classify by color.
+	- Example: we have continuous data that is polynomial in nature, but model can only represent linear relationship.
+	- To overcome error from bias, we need a more complex model.
+	- Tend to have high error on training set.
+
+Error due to Variance
+	- Model does not have enough data, so it is unable to generalize predictions to larger populations.
+	- This is overfitting, high sensitivity to the training set.
+	- Most data is samples from a larger population.
+	- Typical fix is to either train the model on more data. If data unavailable, limit model's complexity.
+	- Much higher error on test set than on training set.
+
+The key to to find the sweet spot that minimizes bias and variance by finding the right level of model complexity.
+
+
+========== Nature of Data & Model Building ==========
+
+Three main data types: numeric data, categorical data, time series data.
+
+# Numeric data
+	- a measurement or count (eg weight, home runs)
+	- can be discrete or continuous
+	- data that are numbers and not ordered in time
+
+# Categorical data
+	- represents characteristics (eg position, team, hometown, handedness)
+	- can take on numerical values, but they don't have mathematical meaning (eg baseball positions as numbers)
+	- ordinal data: categories with some order or ranking
+
+# Time-Series data
+	- data collected via repeated measurements over time
+
+
+========== Training & Testing ==========
+
+Quiz: Why use training and testing data? Check all that apply:
+	- Gives estimate of performance on an independent dataset (True)
+	- Serves as a check on overfitting (True)
+	- Because experts say so (False)
+	- Maximizes amount of training data available (False)
+
+### Train/Test Split in sklearn 
+
+# this codes loads the iris dataset
+import numpy as np
+from sklearn import cross_validation
+from sklearn import datasets
+from sklearn import svm
+
+iris = datasets.load_iris()
+iris.data.shape, iris.target.shape
+
+# we can now quickly sample a training set while holding out 40% of the data for testing
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(iris.data, iris.target, test_size = 0.4, random_state=0)
+
+# now we train a classifier
+clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
+
+# we can check our training and testing score with the following
+clf.score(X_train, y_train)
+clf.score(X_test, y_test)
+
+
+========== Cross Validation ==========
+
+### Problems with splitting data into training and testing set:
+	- we want to maximize data in both sets, but every data point we take out of training into test set means have less data to train on
+	- k-fold cross validation: partition data into k bins, train on k-1 bins, run k times, average test results from those k experiments
+
+### CV in sklearn
+
+### GridSearch CV in sklearn
+
+# creates a dictionary of the parameters, playing around with kernel and C
+parameters = {'kernel':('linear', 'rbf'), 'C':[1,10]}
+
+# this creates a shell for the classifier that uses the svm algorithm, but we have 4 combinations of parameters we want to compare [ from parameters: ('rbf', 1), ('rbf', 10), ('linear', 1), ('linear', 10) ]
+svr = svm.SVC()
+
+# the classifier is created, we pass in the algorithm and dict of parameters, it creates grid of parameter combinations to try
+clf = grid_search.GridSearchCV(svr, parameters)
+
+# fit function now tries all parameter combinations and returns a fitted classifier that's automatically tuned to the optimal parameter combination. You can access it with clf.best_params_
+clf.fit(iris.data, iris.target)
+
+
+========== Representative Power of a Model ==========
+
+Curse of Dimensionality: as the number of features or dimensions grows, the amount of data we need to generalize accurately grows exponentially.
+
+
+========== Learning Curves and Model Complexity ==========
+
+Learning curve: a graph that compares the performance of a model on training and testing data over a varying number of training instances.
+	- a learning curve allows us to verify when a model has learned as much as it can about the data
+	- in this case, we should see a consistent gap between training and testing error rates
+
+	
+
+
+

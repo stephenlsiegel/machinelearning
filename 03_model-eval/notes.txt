@@ -1,0 +1,28 @@
+==================== MODEL EVALUATION AND VALIDATION =====================
+
+========== Intro ==========
+
+Course Outline
+
+1. Review basic statistics that describe data, cover useful libraries to manipulate and process data.
+2. Ways to evaluate model performance by choosing the appropriate metric for a given problem.
+3. How to split a dataset into training and testing sets so we can evaluate a model.
+4. Common issues that can arise when our models do not match the size or complexity of the data, and common ways to optimize them.
+
+At the end of the unit, you'll do a project on building a model to fit some data.
+
+
+========== Prerequisites ==========
+
+1. Programming experience, especially in Python.
+2. Familiarity with statistics. Udacity has descriptive stats course and inferential stats course.
+
+
+========== Measures of Central Tendency ==========
+
+
+
+========== Variability of Data ==========
+
+Outlier:	< Q1 - 1.5 * IQR
+			> Q3 + 1.5 * IQR

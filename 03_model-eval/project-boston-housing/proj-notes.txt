@@ -7,4 +7,10 @@ Tasks:
 	2. Split data into training and testing sets, determine suitable performance metric.
 	3. Analyze performance graphs for a learning algorithm with varying parameters and training set sizes.
 	4. Pick the optimal model that best generalizes to unseen data.
-	5. Test model on new smaple.
+	5. Test model on new sample.
+
+
+To run iPython notebook, navigate to folder, then type jupyter notebook notebook_name.
+
+
+Left off on Analyzing Model Performance.

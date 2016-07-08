@@ -13254,6 +13254,7 @@ M2sBD7bMzMzMzMxawIMtMzMzMzOzFvh/dZJLrRNK9DEAAAAASUVORK5CYII=
 <p>The score of the <strong>training curve</strong> decreases initially as more training points are added, but the score appears to level off at about 200 training points.</p>
 <p>The score of the <strong>testing curve</strong> dramatically increases as the number of training points increases from 1 to 50. The score then levels off around 200 training points.</p>
 <p>After about 200 training points, adding more training points only provides a very small (perhaps negligible) improvement to testing score. The training and testing score converge nicely to around 0.75. The training score is only slightly higher than the testing score (compared to max depths 6 and 10), so we don't have much evidence to believe that max depth = 3 is overfitting. Max depth = 3 also has a testing score that is about the same as max depths 6 and 10, so we'd prefer max depth 3 because it is the least complex model with the maximum score.</p>
+<p>Model performance appears to level off well before 400 data points, so adding additional training points will not benefit the model.</p>
 
 </div>
 </div>

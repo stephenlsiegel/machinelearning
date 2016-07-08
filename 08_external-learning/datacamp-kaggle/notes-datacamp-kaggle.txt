@@ -1,0 +1,6 @@
+==================== Notes - DataCamp Class on Kaggle's Titanic ML Project ====================
+
+# Import the Pandas library
+import pandas as pd
+
+# Pandas has a read_csv method to load in csv files

@@ -1,2 +1,14 @@
 ==================== SUPERVISED LEARNING NOTES ====================
 
+========== Supervised Learning Intro ==========
+
+features: the data or variables we are using to make a prediction (inputs)
+labels: the outcome we are trying to predict (output)
+
+
+========== Decision Trees ==========
+
+### Classification and Regression
+
+classification: taking some kind of input (X) and mapping it to a discrete label
+regression: taking some kind of input and mapping it to a continuous value

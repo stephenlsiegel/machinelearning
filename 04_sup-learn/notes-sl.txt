@@ -128,3 +128,27 @@ We overfit with decision trees when we have a tree that's too big.
 from sklearn import tree
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(inputs, output)
+
+# Decision Tree Parameters
+Look at docs for DecisionTreeClassifier
+	- min_samples_split: determines if there are enough samples to keep splitting. Default is 2. By raising this, you can combat overfitting.
+	- max depth
+	
+### Entropy!
+
+entropy: a measure of impurity in a bunch of examples
+	- note: in sklearn, the default is to use gini instead of information gain
+	
+A high bias ML algorithm practically ignores the data.
+A high variance ML algorithm is very susceptible to data.
+In reality, we have a bias-variance trade off and we tune our algorithms based on this trade off.
+
+# Decision Trees Strengths & Weaknesses
+- Strengths
+	- can build bigger classifiers out of decision trees using ensemble methods
+- Weaknesses
+	- prone to overfitting (be careful with parameter tuning)
+	
+
+========== Regression and Classification ==========
+

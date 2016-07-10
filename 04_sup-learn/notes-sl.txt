@@ -12,3 +12,119 @@ labels: the outcome we are trying to predict (output)
 
 classification: taking some kind of input (X) and mapping it to a discrete label
 regression: taking some kind of input and mapping it to a continuous value
+
+### Classification Learning
+
+# terminology:
+
+instances: vectors of attributes that define your input space (eg pixels, credit scores)
+concept: the function we are trying to find that maps inputs to outputs
+target concept: the actual answer
+hypothesis class: the set of all concepts that you're willing to entertain
+sample: a training set; ie a set of instances paired with an output
+candidate: a concept that you think might be the target concept
+testing set: looks just like a training set, used to compare candidate to target concept
+
+# Example: you're on a date with someone, and you come to a restaurant, you decided whether to enter or not
+
+input: features about the restaurant
+output: enter or not? (binary classification problem)
+
+What features do we have to describe the restaurant?
+	- type (italian, french, thai)
+	- atmosphere (fancy, hole-in-the-wall, casual)
+	- occupied (yes, no)
+	- do you really want to impress your date? (yes, no)
+	- cost ($, $$, $$$ or actual number)
+	- are you hungry? (yes, no)
+	- is it raining outside? (yes, no)
+	
+# Representation vs. Algorithm
+
+Decision tree is a specific representation. An algorithm builds a decision tree.
+	- nodes: particular attributes that you ask a question about 
+
+A Decision Tree is essentially just asking a series of questions. But how do we make a decision tree?
+
+# 20 Questions
+Prof is thinking of a thing, you have 20 questions to guess it.
+1. Is it a living creature? Yes
+2. Is it a person? Yes
+3. Is it a famous person? Yes
+4. Is it a famous person that we both know directly? No
+5. Living person? No
+6. Famous for music? Yes
+7. Lived during 20th century? Yes
+8. Genre rap? No
+9. Singer? Yes
+10. Female? No
+11. Die in last 10 years? Yes
+12. Name Michael? Yes
+13. Is it Michael Jackson? Yep.
+# How does this give us an algorithm for a decision tree?
+
+Think about how we asked the questions. We started by trying to narrow down the space. The goal in asking questions is to narrow possibilities. Imagine if you asked the last question first: Is the name Michael? If the answer is No, then you still wouldn't know if the thing is a living creature or not. 
+
+# Decision Trees Learning
+
+What is the algorithm we used for 20 questions?
+1. Pick the best attribute.
+	- what is best? splits the data roughly in half?
+2. Ask a question about the attribute.
+3. Follow the path of the answer.
+4. Go back to 1 until you've gotten the answer.
+
+# Decision Trees: Expressiveness
+boolean: A and B is true when A is True and B is True
+
+# ID3 Algorithm
+Loop:
+	- A = best attribute
+	- Assign A as decision attribute for node
+	- For each value of A create a descendent of node
+	- Sort training examples to leaves
+	- If examples perfectly classified, stop
+	- Else: iterate over leaves.
+
+# ID3 Bias
+
+two kinds of biases we worry about:
+	- restriction bias: restricting the hypothesis set to only the set that you care about
+	- preference bias: what hypotheses from set H that we prefer
+	
+inductive bias of ID3:
+	- good splits at the top of the tree
+	- given two decision trees, ID3 prefers the one with the better split at the top
+	- prefers correct over incorrect
+	- prefers shorter trees (this follows from the good splits preference)
+
+# Decision Trees: Continuous Attributes
+So far all our examples have had both discrete outputs and inputs. What happens if we have continuous attributes (inputs)?
+	- We have an infinite number of options to split a continuous attribute.
+
+# Decision trees: when do we stop?
+	- In the algorithm, when everything is classified correctly.
+	- This could overfit, or fail if two instances have the same attributes but different outcomes (ie noise in data)
+	- We run out of attributes!
+We overfit with decision trees when we have a tree that's too big.
+	- One way to avoid overfitting is to "prune" the tree
+	
+# Decision trees: what if we have regression (continuous output)?
+	- splitting, what's the criteria?
+	- output: average, local linear fit
+
+# Wrap Up
+	- Representation
+	- ID3: top down learning algorithm
+	- Expressiveness of DTs
+	- Bias of ID3
+	- "Best" attributes (Gain(S,A))
+	- Dealing with overfitting
+	
+
+========== More Decision Trees ==========
+
+# sklearn for decision trees
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(inputs, output)

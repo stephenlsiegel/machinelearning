@@ -160,3 +160,12 @@ Provides a high level overview of regression.
 	- best constant in terms of squared error: mean
 	- input representaiton for regression
 
+
+========== Regressions ==========
+
+Continuous supervised learning means the output is continuous (the input can be discrete or continuous).
+
+To determine whether we should use continuous or discrete, ask yourself: does the output have an ordering?
+
+Interesting example: are phone numbers continuous or discrete? They don't really have an ordering, even if area code gives a general idea of location. But is 555-3232 related to 555-3233? Probably not.
+

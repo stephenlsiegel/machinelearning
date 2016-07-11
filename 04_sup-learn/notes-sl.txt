@@ -152,3 +152,11 @@ In reality, we have a bias-variance trade off and we tune our algorithms based o
 
 ========== Regression and Classification ==========
 
+Provides a high level overview of regression.
+	- history
+	- model selection and under/over fitting
+	- cross validation
+	- linear, polynomial regression
+	- best constant in terms of squared error: mean
+	- input representaiton for regression
+

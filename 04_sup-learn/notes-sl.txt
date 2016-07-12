@@ -169,3 +169,28 @@ To determine whether we should use continuous or discrete, ask yourself: does th
 
 Interesting example: are phone numbers continuous or discrete? They don't really have an ordering, even if area code gives a general idea of location. But is 555-3232 related to 555-3233? Probably not.
 
+# Minimizing sum of squared errors
+
+In linear regression, we are trying to minimize the sum of the squared errors.
+
+# Algorithms for this
+	- ordinary least squares (OLS) => used in sklearn LinearRegression
+	- gradient descent
+	
+We can't use SSE to compare across data sets of different sizes because each additional data point contributes to SSE. R Squared doesn't have this shortcoming.
+
+# R Squared
+- Answers: how much of my change in the output (y) is explained by the change in my input (x).
+- 0.0 < r^2 < 1.0
+- Independent of number of data points
+
+### Comparing Classification and Regression
+
+Property		|			Supervised Classification			|			Regression
+----------------|-----------------------------------------------|-------------------------------
+output type		|	discrete (class labels)						|		continuous (number)
+find			|	decision boundary							|		best fit line
+evaluation		|	accuracy									|		SSE, r-squared
+
+### Multivariate Regression
+

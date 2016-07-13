@@ -194,3 +194,30 @@ evaluation		|	accuracy									|		SSE, r-squared
 
 ### Multivariate Regression
 
+
+========== More Regressions ==========
+
+### Parametric regression
+y = mx + b, where m and b are parameters
+y = m1 * x^2 + m2 * x + b where m1, m2, and b are parameters
+
+### K nearest neighbor (KNN)
+Find K nearest historical datapoints, use them to estimate (maybe by taking the average)
+
+
+### Kernel regression
+Weight the contribution of each of the nearby data points by how close they are.
+
+If you don't have a guess about the form of a parametric model, it's often best to use non-parametric model.
+
+Parametric:
+	- don't have to store data
+	- training is slow, querying is fast
+Non-Parametric:
+	- have to store all data points
+	- training is fast, querying is slow
+	- avoid having to assume a type of model (eg linear)
+
+
+========== Neural Networks ==========
+

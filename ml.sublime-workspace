@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"plot",
+				"plot"
+			],
+			[
+				"plt",
+				"plt"
+			],
+			[
+				"np",
+				"np_2d"
+			],
+			[
 				"my_predi",
 				"my_prediction_forest"
 			],
@@ -124,12 +136,19 @@
 	"buffers":
 	[
 		{
-			"file": "08_external-learning/neural-nets-deep-learn/README.md",
+			"file": "08_external-learning/datacamp-intermed-python-ds/00_numpy-intro/numpy-notes.py",
 			"settings":
 			{
-				"buffer_size": 176,
-				"line_ending": "Unix",
-				"name": "# Neural Nets and Deep Learning"
+				"buffer_size": 1882,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "08_external-learning/datacamp-intermed-python-ds/01_matplotlib/matplotlib.py",
+			"settings":
+			{
+				"buffer_size": 1001,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -157,6 +176,8 @@
 	},
 	"file_history":
 	[
+		"/Users/stephensiegel/keep-files/machinelearning/08_external-learning/datacamp-intermed-python-ds/numpy-notes.py",
+		"/Users/stephensiegel/keep-files/machinelearning/08_external-learning/neural-nets-deep-learn/README.md",
 		"/Users/stephensiegel/keep-files/chess/knight-path/knight-path.py",
 		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/Conversion-For Liliane/pr-to-loans.sql",
 		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/Conversion-For Liliane/loans_to_pr.sql",
@@ -282,9 +303,7 @@
 		"/Users/stephensiegel/Documents/02_Training/15_10_13_Datafest/.git/COMMIT_EDITMSG",
 		"/Users/stephensiegel/Documents/02_Training/15_10_13_Datafest/datafestqueries.sql",
 		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/reflections/lesson_2_reflections.txt",
-		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/asteroids/game.js",
-		"/Users/stephensiegel/Documents/01_Projects/15_10_09_DatabaseMap/map.xml",
-		"/Users/stephensiegel/Documents/02_Database Mapping/map.xml"
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/asteroids/game.js"
 	],
 	"find":
 	{
@@ -369,29 +388,54 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "08_external-learning/neural-nets-deep-learn/README.md",
+					"file": "08_external-learning/datacamp-intermed-python-ds/00_numpy-intro/numpy-notes.py",
 					"settings":
 					{
-						"buffer_size": 176,
+						"buffer_size": 1882,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								176,
-								176
+								1882,
+								1882
 							]
 						],
 						"settings":
 						{
-							"auto_name": "# Neural Nets and Deep Learning",
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "08_external-learning/datacamp-intermed-python-ds/01_matplotlib/matplotlib.py",
+					"settings":
+					{
+						"buffer_size": 1001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1000,
+								1000
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

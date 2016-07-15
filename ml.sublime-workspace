@@ -1,0 +1,467 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"my_predi",
+				"my_prediction_forest"
+			],
+			[
+				"test_feat",
+				"test_features_two"
+			],
+			[
+				"Decision",
+				"DecisionTreeClassifier"
+			],
+			[
+				"feature",
+				"features_one"
+			],
+			[
+				"randomWord",
+				"randomWord"
+			],
+			[
+				"letters",
+				"lettersToGuess"
+			],
+			[
+				"incorr",
+				"incorrectGuesses"
+			],
+			[
+				"lett",
+				"lettersGuessed"
+			],
+			[
+				"incor",
+				"incorrectGuesses"
+			],
+			[
+				"randomWordSecret",
+				"randomWordSecretAsList"
+			],
+			[
+				"randomWordSecre",
+				"randomWordSecretAsList"
+			],
+			[
+				"random",
+				"randomWordSecretAsList"
+			],
+			[
+				"randomWordSe",
+				"randomWordSecret"
+			],
+			[
+				"randomWordSec",
+				"randomWordSecretAsList"
+			],
+			[
+				"back",
+				"backslash_cat"
+			],
+			[
+				"promo",
+				"promo_end_date"
+			],
+			[
+				"eff",
+				"effective_payment_date"
+			],
+			[
+				"daily_intere",
+				"daily_interest_before_first_payment"
+			],
+			[
+				"out",
+				"outstanding_principal_before_first_payment"
+			],
+			[
+				"oustand",
+				"outstanding_principal_before_first_payment"
+			],
+			[
+				"installm",
+				"installment_amount_cents"
+			],
+			[
+				"cumulate",
+				"cumulative_payment_cents"
+			],
+			[
+				"cumula",
+				"cumulative_payment_cents"
+			],
+			[
+				"payment_am",
+				"payment_amount_cents"
+			],
+			[
+				"install",
+				"installment_period_end"
+			],
+			[
+				"status",
+				"status_num"
+			],
+			[
+				"max",
+				"max_status_num"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"num",
+				"numloans"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "08_external-learning/neural-nets-deep-learn/README.md",
+			"settings":
+			{
+				"buffer_size": 176,
+				"line_ending": "Unix",
+				"name": "# Neural Nets and Deep Learning"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/stephensiegel/keep-files/chess/knight-path/knight-path.py",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/Conversion-For Liliane/pr-to-loans.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/Conversion-For Liliane/loans_to_pr.sql",
+		"/Users/stephensiegel/keep-files/machinelearning/04_sup-learn/notes-sl.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/04_data/01_output/20160708/snosaJsons/20160711/loan71858.json",
+		"/Users/stephensiegel/keep-files/machinelearning/08_external-learning/datacamp-kaggle/titanic.py",
+		"/Users/stephensiegel/keep-files/machinelearning/08_external-learning/datacamp-kaggle/notes-datacamp-kaggle.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/04_data/01_output/20160701/snosaJsons/loan29446.json",
+		"/Users/stephensiegel/keep-files/machinelearning/03_model-eval/project-boston-housing/proj-notes.txt",
+		"/Users/stephensiegel/keep-files/machinelearning/03_model-eval/notes.txt",
+		"/Users/stephensiegel/keep-files/machinelearning/01_welcome/02_getting-started/notes.txt",
+		"/Users/stephensiegel/keep-files/machinelearning/01_welcome/03_orientation/orientation-notes.txt",
+		"/Users/stephensiegel/keep-files/machinelearning/02_titanic-proj/overview.txt",
+		"/Users/stephensiegel/keep-files/machinelearning/02_titanic-proj/titanic_survival_exploration/titanic_visualizations.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex46/projects/skeleton/setup.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex46/projects/skeleton/tests/NAME_tests.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex46/ex46.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex45/ex45.py",
+		"/Users/stephensiegel/keep-files/machinelearning/01_welcome/01_readiness-quiz/count_words.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex45/guess_number.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex45/rock_paper_scissors.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex45/hangman.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex46/setup.py",
+		"/Users/stephensiegel/nosa_calculations/01_queries/01_nosa-data-pull.sql",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex14/ex14.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex13/ex13.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex12/ex12.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex11/ex11sd.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex11/ex11.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex10/ex10.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex9/ex9sd.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex9/ex9.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex8/ex8.py",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex7/ex7.py",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/model-score.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/03_examples/160617/SNOSA-sample.json",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/01_nosa-data-pull-160520.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/pr-to-loans.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/conversion/loans_to_pr.sql",
+		"/Users/stephensiegel/Desktop/scratch.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/04_data/preapproved_records/201601_001r1/data-pull-model-scores.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160613-tu-trigger-sizing/trigger-sizing-queries.sql",
+		"/Users/stephensiegel/keep-files/pythonthehardway/ex0/test.txt",
+		"/Users/stephensiegel/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/response-queries.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/dm-queries.sql",
+		"/Users/stephensiegel/Desktop/acxiom-intro-queries.sql",
+		"/Users/stephensiegel/Desktop/dataengineering.txt",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/preapproved-records-and-applications.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/01_nosa-data-pull.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/00_archive/01_nosa-data-pull-160513.sql",
+		"/Users/stephensiegel/Documents/06_Performance/2016-midyear-self-review.txt",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/02_queries/preliminary-data.sql",
+		"/Users/stephensiegel/Documents/000_Personal/05_Keto/160503-shopping-list.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/00_archive/nosa-data-pull20160505.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/nosa-data-pull.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/notes.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/00_archive/nosa-data-pull-160427.sql",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/01_background/redirectmailanalytics/response.R",
+		"/Users/stephensiegel/Documents/01_Projects/01_BA-projects/160420-dm-analytics/01_background/redirectmailanalytics/conversion.R",
+		"/Users/stephensiegel/Documents/06_Performance/2016-goals.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/01_queries/notes.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/01_queries/LOC_interest_query.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/01_queries/LOC_interest_query_custid.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/01_queries/loc-data-pull.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/01_queries/loc-interest-query.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/03_data/Loc-10024-with-close.csv",
+		"/Users/stephensiegel/Documents/01_Projects/16_04_08-loc/03_data/LoC-10024-updated.csv",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/parsing.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/parsing-160125.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/parsing-notes.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contract1464004.html",
+		"/Users/stephensiegel/Documents/000_Personal/03_Home/04_HOA/2016.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/notes-nosa.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_03_09-loyalty/notes.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/01_queries/exclude-loans.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-160216-queries-withcte.sql",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/09_data-products/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/04_R/03_UsefulR/sampledata.csv",
+		"/Users/stephensiegel/Documents/01_Projects/16_02_04-loyalty-pay-on-time/queries_20160223.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-160211-queries.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_02_04-loyalty-pay-on-time/payment_transaction_accounts.txt",
+		"/Users/stephensiegel/Documents/01_Projects/16_02_04-loyalty-pay-on-time/queries.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_02_04-loyalty-pay-on-time/exploratoryquery.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_02_04-loyalty-pay-on-time/counts.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-160203-finalquery.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-160201-finalquery.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-160129.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-mod-loan-performance.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa_160121.sql",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contractCA-id1471288.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contractIL_installment1470798.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_20-uk-nosa/nosa-queries.sql",
+		"/Users/stephensiegel/Desktop/m74207281.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contractCA1464004.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contractFL1476245.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/contractTX1469952.html",
+		"/Users/stephensiegel/Documents/01_Projects/16_01_18_loan-contract-parsing/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/nosa.sql",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/09_data-products/01_notes-and-materials/week1/fig/n1.html",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/08_machine-learning/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/000_Personal/04_Projects/cfb-conference-distance/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_09 Loans from paid_off to current/loan-pool.sql",
+		"/Users/stephensiegel/Dropbox (AvantCredit.com)/15_11_10_rfz-competition-analysis/comparison-timebox-applicationid/data/raw/rfz_analytics event_generic_partner_post_offers 2015-11-30T1659.csv",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/06_regression-models/.git/MERGE_MSG",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/06_regression-models/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_09 Loans from paid_off to current/query.sql",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_09 Loans from paid_off to current/loans-first-payoff-date.sql",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_09 Loans from paid_off to current/lsl-for-loan-pool.sql",
+		"/Users/stephensiegel/Documents/000_Personal/01_Coursera/06_regression-models/03_projects/project-overview.txt",
+		"/Users/stephensiegel/Documents/000_Personal/04_Projects/15_10_27_plate-discipline/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/000_Personal/04_Projects/15_10_27_plate-discipline/data/processing/birth/bbref-raw-by-country/international/bio_Afghanistan_born_bio_batting.csv",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/reflections/lesson_3_reflections.txt",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/recipes/cake-recipe.txt",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_14_parse_customer_applications/parse.sql",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/recipes/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/recipes/chili-recipe.txt",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/recipes/eggs-recipe.txt",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/recipes/egss-recipe.txt",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/reflections/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_19_gen_cust_timeline/timeline.sql",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_14_parse_customer_applications/christinepool.sql",
+		"/Users/stephensiegel/Documents/02_Training/15_10_13_Datafest/.git/COMMIT_EDITMSG",
+		"/Users/stephensiegel/Documents/02_Training/15_10_13_Datafest/datafestqueries.sql",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/reflections/lesson_2_reflections.txt",
+		"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/asteroids/game.js",
+		"/Users/stephensiegel/Documents/01_Projects/15_10_09_DatabaseMap/map.xml",
+		"/Users/stephensiegel/Documents/02_Database Mapping/map.xml"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			")",
+			"(",
+			"train",
+			"_\"",
+			"[1] \"",
+			"jake",
+			"\"",
+			"'::date",
+			"::date\"",
+			"pr\"",
+			"c_score\"",
+			"[1] \"",
+			"row_numb",
+			"payment_numb",
+			"ssn",
+			"18459",
+			"\"",
+			"[1] \"",
+			"\"",
+			"installment_number",
+			"bankruptcy",
+			"\"",
+			"[1] \"",
+			"\"",
+			"[1] \"",
+			"\"",
+			"[1] \"",
+			"(select * from x)",
+			"fico",
+			"<td data-th=\"Address\">",
+			"webbank",
+			"\"",
+			"[1] \"",
+			"\"",
+			"[1] \"",
+			"loan_id",
+			"leads.source",
+			"\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"]",
+			"[",
+			"test",
+			"",
+			"'",
+			"::date",
+			"pr",
+			"c_score",
+			"",
+			"(select customer_id from loans where id = {% parameter loan_id %})",
+			"",
+			"'"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "08_external-learning/neural-nets-deep-learn/README.md",
+					"settings":
+					{
+						"buffer_size": 176,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								176,
+								176
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# Neural Nets and Deep Learning",
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/stephensiegel/Documents/000_Personal/02_Udacity/01_HowToUseGitAndGitHub/01_Lesson1/version-control/reflections/lesson_1_reflections.txt"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true
+}

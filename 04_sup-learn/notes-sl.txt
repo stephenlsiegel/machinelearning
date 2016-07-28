@@ -221,3 +221,31 @@ Non-Parametric:
 
 ========== Neural Networks ==========
 
+
+
+========== Support Vector Machines ==========
+
+- margins, their relationship to generalization and overfitting
+- margins: bigger is better
+- optimization problem for finding maximum margins (quadratic programming)
+- support vectors are points from input data that are used to find margin
+- kernel trick: X^T Y generalized as K(X,Y) --- domain knowledge
+- kernels have to satisfy mercer condition
+
+Basics: SVM algorithm finds a hyperplane to separate data of two classes.
+
+margin: distance between line and nearest point of either of the two classes.
+	- want to choose the line that maximizes the margin
+
+Parameters for an SVM:
+	- kernel
+	- C: controls tradeoff between smooth decision boundary and classifying training points correctly
+		- large C means more training points correct
+	- gamma: specifies the kernel coefficient for 'rbf', 'poly', and 'sigmoid'
+
+	
+
+SVM Strengths and Weaknesses
+- work well in complicated domains with clear marginal separation
+- not good in large datasets, long training time
+- does not work well with lots of noise

@@ -249,3 +249,31 @@ SVM Strengths and Weaknesses
 - work well in complicated domains with clear marginal separation
 - not good in large datasets, long training time
 - does not work well with lots of noise
+
+
+========== Instance Based Learning ==========
+
+K-NN
+
+Given:
+-training data
+-distance metric 
+-number of nearest neighbors K
+-query point q
+
+NN = {i: d(q,x_i) K smallest}
+
+Returns:
+- Classification: vote of y_i in NN (could weight)
+- Regression: take mean of y_i in NN (could weight)
+
+# K NN Bias
+
+recall: preference bias is our belief about what makes a good hypothesis. K NN preference bias:
+	- locality -- near points are similar
+	- smoothness -- averaging
+	- all features matter equally
+	
+Other things to keep in mind:
+- choice of distance function matters! (eg euclidean, manhattan, mismatches)
+- choice of K

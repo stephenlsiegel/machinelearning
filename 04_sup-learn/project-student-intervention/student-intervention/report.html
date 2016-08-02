@@ -12139,9 +12139,23 @@ Testing set has 95 samples.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ol>
-<li>Decision Trees: Conceptually, this is a simple model that continues to split the data on various features. The default splitter chooses the feature with the best Gini impurity score. Once the model is trained, it can be represented as a tree and makes for easy interpretation.</li>
-<li>Naive Bayes: This model starts with a prior belief about the outcome that gets adjusted based on new information. We saw in the data exploration that 67.09% of students passed their final exam. In this case, the Naive Bayes model would start with a prior of 67.09% and analyze the new information that comes from the features to determine whether a student should be predicted to pass or not.</li>
-<li>Ensemble (AdaBoost): A popular ensemble algorithm that sequentially fits weak learners on subsets of the data. This model is unlikely to overfit on the data even as more weak learners are applied. The default weak learner algorithm is a decision tree, so I would expect the AdaBoost classifier to perform better than the decision tree classifier in (1).</li>
+<li>Decision Trees: Conceptually, this is a simple model that continues to split the data on various features. The default splitter chooses the feature with the best Gini impurity score. Once the model is trained, it can be represented as a tree and makes for easy interpretation.<ul>
+<li>Strengths: easy to interpret; simple but powerful.</li>
+<li>Weaknesses: without pruning will be prone to overfitting; there are likely better models.
+<br><br></li>
+</ul>
+</li>
+<li>Naive Bayes: This model starts with a prior belief about the outcome that gets adjusted based on new information. We saw in the data exploration that 67.09% of students passed their final exam. In this case, the Naive Bayes model would start with a prior of 67.09% and analyze the new information that comes from the features to determine whether a student should be predicted to pass or not.<ul>
+<li>Strengths: training efficiency; useful for a variety of training situations.</li>
+<li>Weaknesses: assumes features are independent of each other, which may not be valid for all data sets.
+<br><br></li>
+</ul>
+</li>
+<li>Ensemble (AdaBoost): A popular ensemble algorithm that sequentially fits weak learners on subsets of the data. This model is unlikely to overfit on the data even as more weak learners are applied. The default weak learner algorithm is a decision tree, so I would expect the AdaBoost classifier to perform better than the decision tree classifier in (1).<ul>
+<li>Strengths: easy to use; efficient; can improve on other models; usually not prone to overfitting.</li>
+<li>Weaknesses: performs poorly with uniform noise; may require larger data sets.</li>
+</ul>
+</li>
 </ol>
 
 </div>

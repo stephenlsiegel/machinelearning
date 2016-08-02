@@ -277,3 +277,55 @@ recall: preference bias is our belief about what makes a good hypothesis. K NN p
 Other things to keep in mind:
 - choice of distance function matters! (eg euclidean, manhattan, mismatches)
 - choice of K
+
+
+========== Bayesian Methods ==========
+
+##### Naive Bayes #####
+
+Learn the best (most probable) hypothesis given data and some domain knowledge.
+
+
+
+========== Ensemble B&B ==========
+
+Problem: spam email.
+
+Simple rules (that don't work very well on their own):
+1. body of message contains "manly" (+)
+2. from: spouse (-)
+3. short (+)
+4. just urls (+)
+5. just an image (+)
+6. misspelled words (+)
+7. "make money fast" (+)
+
+We want to combine the simple rules to create a complex rule.
+
+Ensemble learning procedure:
+1. Learn over a subset of data, generate a rule.
+2. Repeat multiple times.
+3. Combine rules.
+
+### Bagging (bootstrap aggregation) ###
+
+How do we pick subsets? uniformly random
+How do we combine? take mean
+
+### Boosting ###
+
+Pick subsets: "hardest" examples
+Combine: weighted mean
+
+== definitions ==
+
+error: # of mismatches / # of examples (implicit in this is that every example is equally valuable)
+
+error: P_D[h(x) != c(x)]
+
+The difference here is that you want to weight the examples you get wrong by the probability you'll see those examples.
+
+weak learner: a learner that no matter what the distribution over the data, it does better than chance
+for every D, P_D[.] <= 0.5 - epsilon
+
+

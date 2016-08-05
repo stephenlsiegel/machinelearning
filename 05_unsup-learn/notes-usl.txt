@@ -67,3 +67,57 @@ Impossibility Theorem (Jon Kleinberg): no clustering algorithm can achieve all t
 	- richness
 	- scale invariance
 	- consistency
+	
+
+========== Feature Scaling ==========
+An important step in preprocessing features for some ML algorithms.
+
+A method for rescaling features so they span comparable ranges (like [0,1]).
+
+x' = (x - x_min) / (x_max - x_min)
+
+# minmaxscaler in sklearn
+
+Some algorithms are affected by feature scaling, some aren't.
+	- Affected: SVM with RBF kernel, k-means clustering
+	- Unaffected: decision tree, linear regression
+	
+
+========== Feature Selection ==========
+Why do this?
+
+Knowledge Discovery: it is useful to be able to interpret the features.
+Curse of Dimensionality: as you add more features, you may need exponentially more data
+
+How hard is this problem?
+
+You have a data set with N features, and you want to transform it to M features where M <= N. There are 2^N
+possible subsets, so this problem is very hard. Two general approaches: Filtering and Wrapping.
+
+Filtering:
+	+ speed: faster than wrapping
+	- speed: features looked at in isolation
+	- ignores the learner
+
+Wrapping:
+	+ takes into account model bias
+	+ takes into account learning algorithm
+	- very slow
+
+We could filter using information gain, variance/entropy, independent/non-redundant features.
+
+Wrapping:
+	- hill climbing
+	- randomized optimization
+	- forward search
+	- backward search (these weren't well explained)
+	
+Relevance: 
+- X_i is *strongly relevant* if removing it degrades Bayes Optimal Classifier (BOC)
+- X_i is *weakly relevant* if:
+	- not strongly relevant
+	- there exists a subset of features S such that adding X_i to S improves BOC
+- Otherwise, X_i is *irrelevant*
+
+Relevance measures the effect on the BOC. Really, it's about information.
+Usefulness is about minimizing error given a model/learner.

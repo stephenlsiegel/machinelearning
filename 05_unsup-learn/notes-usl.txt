@@ -62,3 +62,8 @@ Scaling distances by a positive value does not change the clustering.
 --Consistency--
 Shrinking intracluster distances and expanding intercluster distances does not change the clustering. What does this mean?
 	- if we put objects already in a cluster closer together and put clusters farther away from each other, the clustering won't change.
+	
+Impossibility Theorem (Jon Kleinberg): no clustering algorithm can achieve all three of
+	- richness
+	- scale invariance
+	- consistency

@@ -121,3 +121,42 @@ Relevance:
 
 Relevance measures the effect on the BOC. Really, it's about information.
 Usefulness is about minimizing error given a model/learner.
+
+
+========== Principal Component Analysis (PCA) ==========
+
+Principal Component Analysis: given data, PCA obtains a new coordinate system by translation and rotation only
+	- moves center of coordinate system to center of data
+	- moves x axis into the principal axis of variation
+	- moves other axes into orthogonal, tells you how important axes are
+
+PCA is about using multiple features to make a composite feature that more directly probes the underlying phenomenon.
+
+variance: the willingness/flexibility of an algorithm to learn
+variance: technical stats term, roughly the "spread" of the data distribution
+
+The principal component of a dataset is the direction that has the largest variance because it retains
+the maximum amount of "information" in the original data.
+
+Projection onto maximal variance minimizes information loss.
+
+PCA
+- systematized way to transform input features into principal components
+- use PCs as new features
+- PCs are directions in data that maximize variance (minimize information loss) when you project/compress down onto them
+- more variance of data along a PC, higher that PC is ranked
+- first PC has most variance/most information, second PC has most variance/info without overlapping w/ first PC
+- max no of PCs = no of input features
+
+# When to use PCA?
+- latent features driving the patterns in the data
+- dimensionality reduction
+	- PCA can help you visualize high dimensional data
+	- PCA can help you reduce noise
+	- PCA can make other algorithms (regression, classification) work better b/c fewer inputs
+	
+# PCA Example: face recognition
+
+What makes facial recognition in pictures good for PCA?
+	- pictures of faces generally have high input dimensionality (many pixels)
+	- faces have general patters that could be captured in a smaller number of dimensions

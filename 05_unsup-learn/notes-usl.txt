@@ -200,3 +200,13 @@ LDA (Linear Discriminant Analysis)
 	- finds a projection that discriminates based on the label
 
 
+=== Things We Didn't Cover ===
+
+# Deep Learning / Deep Neural Nets #
+A reboot of neural nets.
+
+# Big Data #
+The issues that arise when you have a really large amount of data.
+
+# Semi-Supervised Learning #
+When you have both labeled and unlabeled data.

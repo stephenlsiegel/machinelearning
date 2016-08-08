@@ -160,3 +160,43 @@ PCA
 What makes facial recognition in pictures good for PCA?
 	- pictures of faces generally have high input dimensionality (many pixels)
 	- faces have general patters that could be captured in a smaller number of dimensions
+
+
+	
+========== Feature Transformation ==========
+
+Feature Transformation: the problem of pre-processing a set of features to create a new (smaller? more compact?) feature
+set, while retaining as much (relevant? useful?) information as possible.
+
+We will restrict to linear feature transformation.
+
+Why do feature transformation?
+
+Example: ad hoc information retrieval, aka the Google problem. You have a large number of documents in a 
+database somewhere, and you want to retrieve the set of documents that are relevant to some query.
+
+What are our features in the document?
+	- words, punctuation
+		- problem: lots of words
+		- good indicators, though they may have multiple meanings (polysemy, could lead to false positive)
+		- many words mean the same thing (synonomy, could lead to false negatives)
+
+Independent Components Analysis
+	- PCA is about finding correlation
+	- ICA is trying to maximize independence of the new features
+
+PCA: mutually orthogonal, maximal variance, ordered features
+ICA: mutually independent, maximal mutual information, bag of features
+
+Some alternatives:
+
+RCA (Random Components Analysis)
+	- generates randoms directions
+	- it works remarkably well if the next thing you'll do is some sort of classification
+	- good way for dealing with curse of dimensionality if you don't think ICA or PCA will work well
+	- main advantage: fast
+	
+LDA (Linear Discriminant Analysis)
+	- finds a projection that discriminates based on the label
+
+

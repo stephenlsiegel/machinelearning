@@ -1,0 +1,12 @@
+################################################################################
+##########				Reinforcement Learning Notes				  ##########
+################################################################################
+
+Reinforcement Learning: teaching systems based on our desires.
+	- methods for reinforcement learning
+	- markov decision processes
+	- reinforcement learning and game theory
+Focus on:
+	- How it fills in model building phase
+	- How to evaluate different RL models
+	- How it differs in kinds of models it produces compared to sup/unsup learning

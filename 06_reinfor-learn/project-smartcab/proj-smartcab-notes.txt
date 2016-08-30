@@ -1,0 +1,16 @@
+========== Smartcab Project Notes ==========
+
+States: at any instant, the smartcab is at some intersection.
+	- traffic light (green/red)
+	- car at intersection on each incoming roadway & which direction they are trying to go
+
+A timer counts down at each time step.
+
+Outputs:
+	- stay put, one block forward, one block left, one block right (no backward)
+	
+Rewards:
+	- reward for each successful trip (get to desired destination within time bound)
+	- smaller reward for each correct move at an intersection
+	- small penalty for incorrect move
+	- larger penalty for violating traffic rules and/or causing accident

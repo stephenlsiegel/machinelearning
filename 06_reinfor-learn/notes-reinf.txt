@@ -10,3 +10,54 @@ Focus on:
 	- How it fills in model building phase
 	- How to evaluate different RL models
 	- How it differs in kinds of models it produces compared to sup/unsup learning
+	
+
+########## Markov Decision Processes ##########
+
+Supervised Learning: find y = f(x) (function approximation)
+Unsupervised Learning: given a bunch of Xs, find f(x) (clustering, description)
+Reinforcement Learning: given (x,z), learn some f(x) that generates y
+
+States : S -- set of all possible positions
+Model : T(s, a, s') ~ Pr(s' | s, a) -- rules of the game you are playing
+Actions : A(s) or A -- set of things you can do in a particular state
+Reward : R(s), R(s,a), R(s,a,s') -- a scalar value for being in a state
+----------
+Policy : Pi(s) -> a -- what action to take at a state; solution to a Markov decision process, Pi* is the optimal policy
+
+Markovian property: 
+	- only the present state matters. This means our transition property Pr(s' | s, a) can only depend on the
+	  current state s.
+	- things are stationary, the rules don't change over time
+	-
+More About Rewards:
+	- delayed rewards: when you don't know how your immediate action will affect future results
+	- minor changes matter
+	
+In a finite horizon case, the policy might change based on the time step. In our course we will only
+talk about the infinite horizon case.
+
+Utility of Sequences:
+	if		U(S0, S1, S2, ...) > U(S0, S1', S2', ...)
+	then	U(S1, S2, ...) > U(S1', S2', ...)
+
+This is called stationarity of preferences.
+
+Finding policies
+- start with arbitrary utilities
+- update utilities based on neighbors
+- repeat until convergence
+
+MDP Wrap Up:
+- consists of states, rewards, actions, transitions, discounts
+- policies
+- value functions (utilities: factor in long term, whereas rewards only factor in current state)
+- discounting
+- stationarity
+- Bellman Equation
+
+
+########## Reinforcement Learning ##########
+
+
+

@@ -14,3 +14,11 @@ Rewards:
 	- smaller reward for each correct move at an intersection
 	- small penalty for incorrect move
 	- larger penalty for violating traffic rules and/or causing accident
+
+Environment:
+	- grid city, roads go N/S or E/W
+	- other vehicles on roads, no pedestrians
+	- traffic light at each intersection says either N/S is open or E/W is open
+	- green light: left turn only if no oncoming traffic
+	- red light: right turn only if no oncoming traffic turning left (is this possible given enviro?) or traffic from left going straight
+	- 

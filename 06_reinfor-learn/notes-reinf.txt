@@ -59,5 +59,36 @@ MDP Wrap Up:
 
 ########## Reinforcement Learning ##########
 
+Q-learning is a family of algorithms. Things that can vary:
+- how to initialize Qhat?
+- how to decay alpha_t?
+- how to choose actions?
+
+Wrap Up:
+
+
+########## Game Theory ##########
+
+definition(s) of game theory:
+- mathematics of conflict in decision making
+- multiple agents trying to maximize rewards (up until now we've been using single-agent)
+- game theory comes out of economics and politics
+- it is increasingly part of AI and ML
+
+Strategy: mapping of all possible states to actions.
+
+Nash Equilibrium Theorems:
+- In the n-player pur strategy game, if elimination of strictly dominated strategies eliminates all but one combinations,
+  that combination is the unique N.E.
+- Any N.E. will survive elimination of strictly dominated strategies.
+- If n is finite and each set of strategies (for every i S_i) is finite, there exists a N.E.
+
+
+########## More Game Theory ##########
+
+# Stochastic Games and Multiagent RL
+
+MDP:RL :: stochastic game:multiagent RL
+
 
 

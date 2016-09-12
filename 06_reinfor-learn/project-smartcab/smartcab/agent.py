@@ -3,6 +3,7 @@ from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
 import numpy as np
+import matplotlib.pyplot as plt
 
 class LearningAgent(Agent):
     """An agent that learns to drive in the smartcab world."""
@@ -13,6 +14,7 @@ class LearningAgent(Agent):
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
         self.state = ('', '', '', '', '')
+        self.route = []
         
         self.states = {}
         waypoints = ['forward', 'left', 'right']
@@ -29,10 +31,24 @@ class LearningAgent(Agent):
 										        new_key = (w,t,o,r,l)
 										        self.states[new_key] = {None:0, 'forward':0, 'right':0, 'left':0}
 
+        self.successes = []
+        self.trial_num = 0.0
+        self.action_count = 0.0
+        self.shortest_route = 0.0
+        self.route_efficiency = []
+
     def reset(self, destination=None):
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-
+        self.successes.append(0)
+        self.trial_num += 1.0
+        self.action_count = 0.0
+        self.shortest_route = self.env.compute_dist(self.env.get_start(),self.planner.get_destination()) * 1.0
+        #print self.planner.get_destination()
+        #print self.env.get_start()
+        #print self.env.compute_dist(self.env.get_start(),self.planner.get_destination())
+        self.route = []
+		
     def update(self, t):
         # Gather inputs
         self.next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
@@ -67,16 +83,50 @@ class LearningAgent(Agent):
             action = random.choice([None, 'forward', 'right', 'left'])
 
         # Execute action and get reward
+        self.route.append(action)
         reward = self.env.act(self, action)
+        self.action_count += 1
 
         # TODO: Learn policy based on state, action, reward
         self.states[current_key][action] += reward
-
-        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
-        print self.states[current_key]
-        print action
-        print ""
-
+		
+        # Update successes if arrived at destination
+        if reward > 2.0:
+            self.successes[len(self.successes)-1] = 1
+            self.success_count = sum(self.successes)*1.0
+            self.accuracy = self.success_count / self.trial_num
+            self.route_efficiency.append((self.shortest_route / self.action_count))
+            print "Total trips: %d" % self.trial_num
+            print "Successful trips: %d" % self.success_count
+            print "Accuracy: %f" % self.accuracy
+            print "Actions taken: %d" % self.action_count
+            print "Shortest route: %d" % self.shortest_route
+            print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            #print self.route_efficiency
+            if self.trial_num == 100:
+                plt.plot(range(1,101), self.route_efficiency)
+                plt.ylim(ymax=1)
+                plt.show()			
+        elif deadline == 0:
+            self.success_count = sum(self.successes)*1.0
+            self.accuracy = self.success_count / self.trial_num
+            self.route_efficiency.append((self.shortest_route / self.action_count))
+            print "Total trips: %d" % self.trial_num
+            print "Successful trips: %d" % self.success_count
+            print "Accuracy: %f" % self.accuracy
+            print "Actions taken: %d" % self.action_count
+            print "Shortest route: %d" % self.shortest_route
+            print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            #print self.route_efficiency
+            if self.trial_num == 100:
+                plt.plot(range(1,101), self.route_efficiency)
+                plt.ylim(ymax=1)
+                plt.show()
+			
+        #print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
+        #print self.states[current_key]
+        #print action
+        #print ""
 
 def run():
     """Run the agent for a finite number of trials."""
@@ -88,12 +138,11 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=0.001, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0.00001, display=True)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     sim.run(n_trials=100)  # run for a specified number of trials
     # NOTE: To quit midway, press Esc or close pygame window, or hit Ctrl+C on the command-line
-
 
 if __name__ == '__main__':
     run()

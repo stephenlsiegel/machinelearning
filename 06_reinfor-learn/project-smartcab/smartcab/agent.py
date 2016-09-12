@@ -2,6 +2,7 @@ import random
 from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
+import numpy as np
 
 class LearningAgent(Agent):
     """An agent that learns to drive in the smartcab world."""
@@ -11,7 +12,22 @@ class LearningAgent(Agent):
         self.color = 'red'  # override color
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
-        self.state = ['', '', '', '', '', '']
+        self.state = ('', '', '', '', '')
+        
+        self.states = {}
+        waypoints = ['forward', 'left', 'right']
+        trafficlight = ['red','green']
+        oncoming = [None, 'left', 'right', 'forward']
+        right = [None, 'left', 'right', 'forward']
+        left = [None, 'left', 'right', 'forward']
+        
+        for w in waypoints:
+		        for t in trafficlight:
+				        for o in oncoming:
+						        for r in right:
+								        for l in left:
+										        new_key = (w,t,o,r,l)
+										        self.states[new_key] = {None:0, 'forward':0, 'right':0, 'left':0}
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
@@ -24,17 +40,42 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        self.state = [self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline]
+        self.state = (self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'])
         
         # TODO: Select action according to your policy
-        action = random.choice([None,'forward','right','left'])
+        #action = random.choice([None,'forward','right','left']) # random action
+		
+		# Implement Q-Learning
+        current_key = self.state
+        current_line = self.states[current_key]
+        current_values = current_line.values()
+        best_action_value = max(current_values)
+        num_best = sum(np.array(current_values) == best_action_value)
+        
+        if num_best==1:
+            action = current_line.keys()[current_line.values().index(best_action_value)]
+        elif num_best==2 or num_best==3:
+            filt_dict = {}
+            for k,v in current_line.iteritems():
+                if v == best_action_value:
+                    filt_dict[k] = v
+                else:
+                    continue
+            possible_actions = filt_dict.keys()
+            action = random.choice(possible_actions)
+        else:
+            action = random.choice([None, 'forward', 'right', 'left'])
 
         # Execute action and get reward
         reward = self.env.act(self, action)
 
         # TODO: Learn policy based on state, action, reward
+        self.states[current_key][action] += reward
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
+        print self.states[current_key]
+        print action
+        print ""
 
 
 def run():
@@ -47,7 +88,7 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=0.5, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0.001, display=True)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     sim.run(n_trials=100)  # run for a specified number of trials

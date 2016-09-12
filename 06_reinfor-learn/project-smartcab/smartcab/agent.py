@@ -4,6 +4,7 @@ from planner import RoutePlanner
 from simulator import Simulator
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 class LearningAgent(Agent):
     """An agent that learns to drive in the smartcab world."""
@@ -23,6 +24,7 @@ class LearningAgent(Agent):
         right = [None, 'left', 'right', 'forward']
         left = [None, 'left', 'right', 'forward']
         
+        # Create dictionary of all possible states
         for w in waypoints:
 		        for t in trafficlight:
 				        for o in oncoming:
@@ -73,14 +75,16 @@ class LearningAgent(Agent):
         elif num_best==2 or num_best==3:
             filt_dict = {}
             for k,v in current_line.iteritems():
-                if v == best_action_value:
+                #if v == best_action_value: # before enhancing
+                if v == best_action_value and k != None: # after enhancing
                     filt_dict[k] = v
                 else:
                     continue
             possible_actions = filt_dict.keys()
             action = random.choice(possible_actions)
         else:
-            action = random.choice([None, 'forward', 'right', 'left'])
+            #action = random.choice([None, 'forward', 'right', 'left']) # before enhancing
+            action = random.choice(['forward', 'right', 'left']) # after enhancing
 
         # Execute action and get reward
         self.route.append(action)
@@ -102,11 +106,19 @@ class LearningAgent(Agent):
             print "Actions taken: %d" % self.action_count
             print "Shortest route: %d" % self.shortest_route
             print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
             #print self.route_efficiency
-            if self.trial_num == 100:
-                plt.plot(range(1,101), self.route_efficiency)
-                plt.ylim(ymax=1)
-                plt.show()			
+            #if self.trial_num == 10000:
+                #re_ar = np.array(self.route_efficiency)
+                #np.savetxt(fname='route_eff.txt', X=re_ar)
+                #csv = pd.DataFrame(np.array(self.route_efficiency))
+                #csv.to_csv("route_eff.csv")
+                #plt.plot(range(1,2501), self.route_efficiency)
+                #plt.ylim(ymax=1)
+                #plt.xlabel('trial number')
+                #plt.ylabel('route efficiency')
+                #plt.title('Route Efficiency over 2,500 Trials')
+                #plt.savefig('tripeffs/2500.png', bbox_inches='tight') #plt.show()"""
         elif deadline == 0:
             self.success_count = sum(self.successes)*1.0
             self.accuracy = self.success_count / self.trial_num
@@ -117,11 +129,20 @@ class LearningAgent(Agent):
             print "Actions taken: %d" % self.action_count
             print "Shortest route: %d" % self.shortest_route
             print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
             #print self.route_efficiency
-            if self.trial_num == 100:
-                plt.plot(range(1,101), self.route_efficiency)
-                plt.ylim(ymax=1)
-                plt.show()
+            #if self.trial_num == 10000:
+                #re_ar = np.array(self.route_efficiency)
+                #np.savetxt(fname='route_eff.txt', X=re_ar)
+                #csv = pd.DataFrame(np.array(self.route_efficiency))
+                #csv.to_csv("route_eff.csv")
+                #print csv
+                #plt.plot(range(1,2501), self.route_efficiency)
+                #plt.ylim(ymax=1)
+                #plt.xlabel('trial number')
+                #plt.ylabel('route efficiency')
+                #plt.title('Route Efficiency over 2,500 Trials')
+                #plt.savefig('tripeffs/2500.png', bbox_inches='tight') #plt.show()"""
 			
         #print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
         #print self.states[current_key]

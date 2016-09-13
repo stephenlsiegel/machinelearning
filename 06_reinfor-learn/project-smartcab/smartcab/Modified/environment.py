@@ -36,6 +36,7 @@ class Environment(object):
         self.t = 0
         self.agent_states = OrderedDict()
         self.status_text = ""
+        self.start_pos = None
 
         # Road network
         self.grid_size = (8, 6)  # (cols, rows)
@@ -83,11 +84,13 @@ class Environment(object):
         # Pick a start and a destination
         start = random.choice(self.intersections.keys())
         destination = random.choice(self.intersections.keys())
+        self.start_pos = start
 
         # Ensure starting location and destination are not too close
         while self.compute_dist(start, destination) < 4:
             start = random.choice(self.intersections.keys())
             destination = random.choice(self.intersections.keys())
+            self.start_pos = start
 
         start_heading = random.choice(self.valid_headings)
         deadline = self.compute_dist(start, destination) * 5
@@ -101,6 +104,9 @@ class Environment(object):
                 'destination': destination if agent is self.primary_agent else None,
                 'deadline': deadline if agent is self.primary_agent else None}
             agent.reset(destination=(destination if agent is self.primary_agent else None))
+
+    def get_start(self):
+        return self.start_pos
 
     def step(self):
         #print "Environment.step(): t = {}".format(self.t)  # [debug]

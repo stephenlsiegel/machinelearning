@@ -36,8 +36,8 @@ class LearningAgent(Agent):
         self.successes = []
         self.trial_num = 0.0
         self.action_count = 0.0
-        #self.shortest_route = 0.0
-        #self.route_efficiency = []
+        self.shortest_route = 0.0
+        self.route_efficiency = []
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
@@ -45,7 +45,7 @@ class LearningAgent(Agent):
         self.successes.append(0)
         self.trial_num += 1.0
         self.action_count = 0.0
-        #self.shortest_route = self.env.compute_dist(self.env.get_start(),self.planner.get_destination()) * 1.0
+        self.shortest_route = self.env.compute_dist(self.env.get_start(),self.planner.get_destination()) * 1.0
         #print self.planner.get_destination()
         #print self.env.get_start()
         #print self.env.compute_dist(self.env.get_start(),self.planner.get_destination())
@@ -99,13 +99,13 @@ class LearningAgent(Agent):
             self.successes[len(self.successes)-1] = 1
             self.success_count = sum(self.successes)*1.0
             self.accuracy = self.success_count / self.trial_num
-            #self.route_efficiency.append((self.shortest_route / self.action_count))
+            self.route_efficiency.append((self.shortest_route / self.action_count))
             print "Total trips: %d" % self.trial_num
             print "Successful trips: %d" % self.success_count
             print "Accuracy: %f" % self.accuracy
-            #print "Actions taken: %d" % self.action_count
-            #print "Shortest route: %d" % self.shortest_route
-            #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            print "Actions taken: %d" % self.action_count
+            print "Shortest route: %d" % self.shortest_route
+            print "Route efficiency: %f" % (self.shortest_route / self.action_count)
             #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
             #print self.route_efficiency
             #if self.trial_num == 10000:
@@ -122,13 +122,13 @@ class LearningAgent(Agent):
         elif deadline == 0:
             self.success_count = sum(self.successes)*1.0
             self.accuracy = self.success_count / self.trial_num
-            #self.route_efficiency.append((self.shortest_route / self.action_count))
+            self.route_efficiency.append((self.shortest_route / self.action_count))
             print "Total trips: %d" % self.trial_num
             print "Successful trips: %d" % self.success_count
             print "Accuracy: %f" % self.accuracy
-            #print "Actions taken: %d" % self.action_count
-            #print "Shortest route: %d" % self.shortest_route
-            #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
+            print "Actions taken: %d" % self.action_count
+            print "Shortest route: %d" % self.shortest_route
+            print "Route efficiency: %f" % (self.shortest_route / self.action_count)
             #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
             #print self.route_efficiency
             #if self.trial_num == 10000:
@@ -159,7 +159,7 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=0.01, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0.00001, display=True)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     sim.run(n_trials=100)  # run for a specified number of trials

@@ -14,24 +14,27 @@ class LearningAgent(Agent):
         self.color = 'red'  # override color
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
-        self.state = ('', '', '', '', '')
+        self.state = ('', '', '', '')
         self.route = []
-        
         self.states = {}
         waypoints = ['forward', 'left', 'right']
         trafficlight = ['red','green']
         oncoming = [None, 'left', 'right', 'forward']
-        right = [None, 'left', 'right', 'forward']
         left = [None, 'left', 'right', 'forward']
         
         # Create dictionary of all possible states
         for w in waypoints:
-		        for t in trafficlight:
-				        for o in oncoming:
-						        for r in right:
-								        for l in left:
-										        new_key = (w,t,o,r,l)
-										        self.states[new_key] = {None:0, 'forward':0, 'right':0, 'left':0}
+            for t in trafficlight:
+                for o in oncoming:
+                    for l in left:
+                        new_key = (w,t,o,l)
+                        if w=='forward':
+                            self.states[new_key] = {None:0.5, 'forward':0.5, 'right':0, 'left':0}
+                        elif w=='right':
+                            self.states[new_key] = {None:0.5, 'forward':0, 'right':0.5, 'left':0}
+                        elif w=='left':
+                            self.states[new_key] = {None:0.5, 'forward':0, 'right':0, 'left':0.5}
+                        #self.states[new_key] = {None:0, 'forward':0, 'right':0, 'left':0}
 
         self.successes = []
         self.trial_num = 0.0
@@ -40,6 +43,7 @@ class LearningAgent(Agent):
         #self.route_efficiency = []
 
     def reset(self, destination=None):
+        print "RESET"
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
         self.successes.append(0)
@@ -52,39 +56,45 @@ class LearningAgent(Agent):
         self.route = []
 		
     def update(self, t):
+        print_move = False
+
         # Gather inputs
         self.next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
         inputs = self.env.sense(self)
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        self.state = (self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'])
-        
-        # TODO: Select action according to your policy
-        #action = random.choice([None,'forward','right','left']) # random action
-		
-		# Implement Q-Learning
+        self.state = (self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['left'])
         current_key = self.state
         current_line = self.states[current_key]
+        current_line_str = str(current_line)
         current_values = current_line.values()
+        
+        # TODO: Select action according to your policy
+		
+		### Implement a basic driving agent - random choice
+        #action = random.choice([None,'forward','right','left']) # random action
+		
+		### Implement Q-Learning
+		# First check all the Q values for the given state
         best_action_value = max(current_values)
         num_best = sum(np.array(current_values) == best_action_value)
         
+        # If there is a best Q value, choose that action
         if num_best==1:
             action = current_line.keys()[current_line.values().index(best_action_value)]
+        # Otherwise randomly sample between actions with Q-values = max Q-value for that state, except exclude None
         elif num_best==2 or num_best==3:
             filt_dict = {}
             for k,v in current_line.iteritems():
-                #if v == best_action_value: # before enhancing
-                if v == best_action_value and k != None: # after enhancing
+                if v == best_action_value and k != None: # We never want to randomly choose None, it will provide no exploration
                     filt_dict[k] = v
                 else:
                     continue
             possible_actions = filt_dict.keys()
             action = random.choice(possible_actions)
         else:
-            #action = random.choice([None, 'forward', 'right', 'left']) # before enhancing
-            action = random.choice(['forward', 'right', 'left']) # after enhancing
+            action = random.choice(['forward', 'right', 'left']) # Again we never randomly choose None
 
         # Execute action and get reward
         self.route.append(action)
@@ -92,9 +102,19 @@ class LearningAgent(Agent):
         self.action_count += 1
 
         # TODO: Learn policy based on state, action, reward
-        self.states[current_key][action] += reward
+        # Q-learning: old value + learning rate * (reward + discount factor * estimate of optimal future value - old value)
+		# Initially set alpha=1, discount=1 
+        old_value = self.states[current_key][action]
+        alpha = 1
 		
-        # Update successes if arrived at destination
+        est_opt_fut_value = (self.planner.next_waypoint(),self.env.sense(self)['light'],self.env.sense(self)['oncoming'],self.env.sense(self)['left'])
+        
+        self.states[current_key][action] = old_value + 1 * (reward + 1 * old_value - old_value) 
+        #print "New State " + str(est_opt_fut_value)
+        #print "New State[current_key] " + str(self.states[current_key])
+        #print "Updated Q-values for state: " + str(self.states[current_key])
+		
+        ### Update end of trip information
         if reward > 2.0:
             self.successes[len(self.successes)-1] = 1
             self.success_count = sum(self.successes)*1.0
@@ -103,6 +123,7 @@ class LearningAgent(Agent):
             print "Total trips: %d" % self.trial_num
             print "Successful trips: %d" % self.success_count
             print "Accuracy: %f" % self.accuracy
+            print self.states[current_key]
             #print "Actions taken: %d" % self.action_count
             #print "Shortest route: %d" % self.shortest_route
             #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
@@ -126,6 +147,7 @@ class LearningAgent(Agent):
             print "Total trips: %d" % self.trial_num
             print "Successful trips: %d" % self.success_count
             print "Accuracy: %f" % self.accuracy
+            print self.states[current_key]
             #print "Actions taken: %d" % self.action_count
             #print "Shortest route: %d" % self.shortest_route
             #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
@@ -149,6 +171,17 @@ class LearningAgent(Agent):
         #print action
         #print ""
 
+        if print_move:
+            print ""
+            print "===UPDATE==="
+            print "Start state: " + str(self.state) # + str(start_state)
+            print "Start value: " + str(current_line_str)
+            print "Action: " + str(action)
+            print "Reward: " + str(reward)
+            print "New values:  " + str(self.states[self.state])
+			
+        #if make_charts:
+
 def run():
     """Run the agent for a finite number of trials."""
 
@@ -159,7 +192,7 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=0.01, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0.0001, display=True)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     sim.run(n_trials=100)  # run for a specified number of trials

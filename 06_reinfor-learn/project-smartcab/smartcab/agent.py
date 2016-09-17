@@ -14,13 +14,23 @@ class LearningAgent(Agent):
         self.color = 'red'  # override color
         self.planner = RoutePlanner(self.env, self)  # simple route planner to get next_waypoint
         # TODO: Initialize any additional variables here
-        self.state = ('', '', '', '')
-        self.route = []
+        self.prior_state = None
+        self.prior_action = None
+        self.action_list = [None] # used in Q learning algorithm
+        self.reward_list = [0] # used in Q learning algorithm
+        self.current_state = ('', '', '', '')
+        self.reward_count = 0.0
+        self.penalty_count = 0.0
+        self.none_count = 0.0
+        self.net_reward = 0.0
+
         self.states = {}
         waypoints = ['forward', 'left', 'right']
         trafficlight = ['red','green']
         oncoming = [None, 'left', 'right', 'forward']
         left = [None, 'left', 'right', 'forward']
+
+        self.pct_stats = pd.DataFrame({'trial_num':[],'pct_reward':[],'pct_penalty':[],'pct_none':[],'pct_reward_or_none':[]})
         
         # Create dictionary of all possible states
         for w in waypoints:
@@ -34,26 +44,25 @@ class LearningAgent(Agent):
                             self.states[new_key] = {None:0.5, 'forward':0, 'right':0.5, 'left':0}
                         elif w=='left':
                             self.states[new_key] = {None:0.5, 'forward':0, 'right':0, 'left':0.5}
-                        #self.states[new_key] = {None:0, 'forward':0, 'right':0, 'left':0}
+                        #self.states[new_key] = {None:0.0, 'forward':0.0, 'right':0.0, 'left':0.0}
 
-        self.successes = []
-        self.trial_num = 0.0
+        self.states[self.current_state] = {None:0.0, 'forward':0.0, 'right':0.0, 'left':0.0}
         self.action_count = 0.0
-        #self.shortest_route = 0.0
-        #self.route_efficiency = []
+        self.stats = {'net_reward':[], 'reward_count':[], 'penalty_count':[], 'none_count':[], 'reward_or_none_count':[],'successes':[], 'total_trials':0}
 
     def reset(self, destination=None):
-        print "RESET"
         self.planner.route_to(destination)
         # TODO: Prepare for a new trip; reset any variables here, if required
-        self.successes.append(0)
-        self.trial_num += 1.0
         self.action_count = 0.0
-        #self.shortest_route = self.env.compute_dist(self.env.get_start(),self.planner.get_destination()) * 1.0
-        #print self.planner.get_destination()
-        #print self.env.get_start()
-        #print self.env.compute_dist(self.env.get_start(),self.planner.get_destination())
-        self.route = []
+        self.prior_state = None
+        self.prior_action = None
+        self.action_list = [None] # used in Q learning algorithm
+        self.reward_list = [0] # used in Q learning algorithm
+        self.reward_count = 0
+        self.penalty_count = 0
+        self.none_count = 0
+        self.net_reward = 0
+        self.stats['total_trials'] += 1
 		
     def update(self, t):
         print_move = False
@@ -64,18 +73,39 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
 
         # TODO: Update state
-        self.state = (self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['left'])
-        current_key = self.state
-        current_line = self.states[current_key]
+        self.prior_state = tuple(self.current_state)
+        self.current_state = (self.next_waypoint, inputs['light'],inputs['oncoming'],inputs['left'])
+		
+        prior_key = tuple(self.prior_state)
+        current_key = tuple(self.current_state)
+		
+        prior_line = dict(self.states[prior_key])
+        current_line = dict(self.states[current_key])
         current_line_str = str(current_line)
+		
         current_values = current_line.values()
         
         # TODO: Select action according to your policy
+        prior_reward = self.reward_list[len(self.reward_list)-1]
+        prior_action = self.action_list[len(self.action_list)-1]
+        prior_q = float(self.states[prior_key][prior_action])
+        max_q_current_state = float(max(current_values))
 		
-		### Implement a basic driving agent - random choice
+        # TODO: Learn policy based on state, action, reward
+        alpha = 1.0
+        gamma = 1.0
+        
+        # ACTUAL Q LEARNING
+        #updated_q_value = prior_q + alpha * (prior_reward + gamma * max_q_current_state - prior_q) 
+        
+		# AGENT LEARNS ON FIRST ENCOUNTER
+        updated_q_value = prior_q + alpha * (prior_reward + gamma * prior_q - prior_q) # sub prior_q for max_q_current_state to do just rewards only q learning
+        self.states[prior_key][prior_action] = updated_q_value # prior_q + alpha * (reward + gamma * prior_q - prior_q) 
+		
+        ### Implement a basic driving agent - random choice
         #action = random.choice([None,'forward','right','left']) # random action
 		
-		### Implement Q-Learning
+        ### Select action with the largest Q-value
 		# First check all the Q values for the given state
         best_action_value = max(current_values)
         num_best = sum(np.array(current_values) == best_action_value)
@@ -97,90 +127,102 @@ class LearningAgent(Agent):
             action = random.choice(['forward', 'right', 'left']) # Again we never randomly choose None
 
         # Execute action and get reward
-        self.route.append(action)
+        self.action_list.append(action)
         reward = self.env.act(self, action)
-        self.action_count += 1
+        self.reward_list.append(reward)
 
-        # TODO: Learn policy based on state, action, reward
-        # Q-learning: old value + learning rate * (reward + discount factor * estimate of optimal future value - old value)
-		# Initially set alpha=1, discount=1 
-        old_value = self.states[current_key][action]
-        alpha = 1
-		
-        est_opt_fut_value = (self.planner.next_waypoint(),self.env.sense(self)['light'],self.env.sense(self)['oncoming'],self.env.sense(self)['left'])
-        
-        self.states[current_key][action] = old_value + 1 * (reward + 1 * old_value - old_value) 
-        #print "New State " + str(est_opt_fut_value)
-        #print "New State[current_key] " + str(self.states[current_key])
-        #print "Updated Q-values for state: " + str(self.states[current_key])
-		
+        if reward>=2.0:
+            self.reward_count += 1
+        elif reward<0:
+            self.penalty_count += 1
+        elif reward==0:
+            self.none_count += 1
+        else:
+            print "There's an error in the reward if/else, reward not in (-1.0, -0.5, 0, 2.0+), reward is: " + str(reward)
+
+        self.net_reward += reward
+
         ### Update end of trip information
         if reward > 2.0:
-            self.successes[len(self.successes)-1] = 1
-            self.success_count = sum(self.successes)*1.0
-            self.accuracy = self.success_count / self.trial_num
-            #self.route_efficiency.append((self.shortest_route / self.action_count))
-            print "Total trips: %d" % self.trial_num
-            print "Successful trips: %d" % self.success_count
-            print "Accuracy: %f" % self.accuracy
-            print self.states[current_key]
-            #print "Actions taken: %d" % self.action_count
-            #print "Shortest route: %d" % self.shortest_route
-            #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
-            #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
-            #print self.route_efficiency
-            #if self.trial_num == 10000:
-                #re_ar = np.array(self.route_efficiency)
-                #np.savetxt(fname='route_eff.txt', X=re_ar)
-                #csv = pd.DataFrame(np.array(self.route_efficiency))
-                #csv.to_csv("route_eff.csv")
-                #plt.plot(range(1,2501), self.route_efficiency)
-                #plt.ylim(ymax=1)
-                #plt.xlabel('trial number')
-                #plt.ylabel('route efficiency')
-                #plt.title('Route Efficiency over 2,500 Trials')
-                #plt.savefig('tripeffs/2500.png', bbox_inches='tight') #plt.show()"""
+            self.stats['net_reward'].append(self.net_reward)
+            self.stats['reward_count'].append(self.reward_count)
+            self.stats['penalty_count'].append(self.penalty_count)
+            self.stats['none_count'].append(self.none_count)
+            self.stats['reward_or_none_count'].append(self.reward_count+self.none_count)
+            self.stats['successes'].append(1)
+            # Add new row to pcts table
+            trial_num = self.stats['total_trials']
+            tot_actions = (self.reward_count + self.penalty_count + self.none_count)*1.0
+            pct_reward = (self.reward_count * 1.0) / tot_actions
+            pct_penalty = (self.penalty_count * 1.0) / tot_actions
+            pct_none = (self.none_count * 1.0) / tot_actions
+            pct_reward_or_none = (self.reward_count+self.none_count*1.0) / tot_actions
+            new_row = {'trial_num':trial_num,'pct_reward':pct_reward, 'pct_penalty':pct_penalty,'pct_none':pct_none, 'pct_reward_or_none':pct_reward_or_none}
+            self.pct_stats = self.pct_stats.append(new_row, ignore_index=True)
         elif deadline == 0:
-            self.success_count = sum(self.successes)*1.0
-            self.accuracy = self.success_count / self.trial_num
-            #self.route_efficiency.append((self.shortest_route / self.action_count))
-            print "Total trips: %d" % self.trial_num
-            print "Successful trips: %d" % self.success_count
-            print "Accuracy: %f" % self.accuracy
-            print self.states[current_key]
-            #print "Actions taken: %d" % self.action_count
-            #print "Shortest route: %d" % self.shortest_route
-            #print "Route efficiency: %f" % (self.shortest_route / self.action_count)
-            #print "Route efficiency avg: %f" % np.array(self.route_efficiency).mean()
-            #print self.route_efficiency
-            #if self.trial_num == 10000:
-                #re_ar = np.array(self.route_efficiency)
-                #np.savetxt(fname='route_eff.txt', X=re_ar)
-                #csv = pd.DataFrame(np.array(self.route_efficiency))
-                #csv.to_csv("route_eff.csv")
-                #print csv
-                #plt.plot(range(1,2501), self.route_efficiency)
-                #plt.ylim(ymax=1)
-                #plt.xlabel('trial number')
-                #plt.ylabel('route efficiency')
-                #plt.title('Route Efficiency over 2,500 Trials')
-                #plt.savefig('tripeffs/2500.png', bbox_inches='tight') #plt.show()"""
-			
-        #print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
-        #print self.states[current_key]
-        #print action
-        #print ""
+            self.stats['net_reward'].append(self.net_reward)
+            self.stats['reward_count'].append(self.reward_count)
+            self.stats['penalty_count'].append(self.penalty_count)
+            self.stats['none_count'].append(self.none_count)
+            self.stats['reward_or_none_count'].append(self.reward_count+self.none_count)
+            self.stats['successes'].append(0)
+            # Add new row to pcts table
+            trial_num = self.stats['total_trials']
+            tot_actions = (self.reward_count + self.penalty_count + self.none_count)*1.0
+            pct_reward = (self.reward_count * 1.0) / tot_actions
+            pct_penalty = (self.penalty_count * 1.0) / tot_actions
+            pct_none = (self.none_count * 1.0) / tot_actions
+            pct_reward_or_none = (self.reward_count+self.none_count*1.0) / tot_actions
+            new_row = {'trial_num':trial_num,'pct_reward':pct_reward, 'pct_penalty':pct_penalty,'pct_none':pct_none, 'pct_reward_or_none':pct_reward_or_none}
+            self.pct_stats = self.pct_stats.append(new_row, ignore_index=True)
 
+        if self.stats['total_trials']==100 and (reward > 2.0 or deadline==0):
+            success_count = sum(self.stats['successes'])*1.0
+            success_count_last10 = sum(self.stats['successes'][90:100])*1.0
+            success_rate = success_count / 100.0
+            success_rate_last10 = success_count_last10 / 10.0
+            # Plot the percent of each move
+            fileName = 'Different Initialization, Explore When Required'
+            #plt.plot(self.pct_stats['trial_num'],self.pct_stats[['pct_none','pct_reward','pct_penalty']])
+            #plt.legend(['None','Reward','Penalty'],bbox_to_anchor=(0.87,-0.1),ncol=3)
+            #plt.xlabel('Trial Number')
+            #plt.ylabel('Percent of Actions in Trial')
+            #plt.title('Percent of Actions over Time (' + fileName + ')')
+            #plt.text(0.75,-0.11,'Success Rate: '+str(success_rate), weight='bold')
+            #plt.savefig('plots/'+fileName+'.png', bbox_inches='tight')
+            #COMBINE REWARD AND NONE
+            make_plots=False
+            if make_plots:
+                plt.plot(self.pct_stats['trial_num'],self.pct_stats['pct_reward_or_none'], color='green')
+                plt.plot(self.pct_stats['trial_num'],self.pct_stats['pct_penalty'], color='red')
+                plt.legend(['Reward or None','Penalty'],bbox_to_anchor=(0.87,-0.1),ncol=3)
+                plt.xlabel('Trial Number')
+                plt.ylabel('Percent of Actions in Trial')
+                plt.title('Percent of Actions over Time (' + fileName + ')')
+                plt.text(0.75,-0.11,'Success Rate: '+str(success_rate), weight='bold')
+                plt.savefig('plots/'+fileName+'.png', bbox_inches='tight')
+            #plt.show()
+            print ""
+            print "=====Summary Stats====="
+            print "Success Rate of Last 10 Trips: %f" % success_rate_last10
+            print "Success Rate Overall: %f" % success_rate
+            print "Total Trials: " + str(self.stats['total_trials'])
+            #print "=====Percents Table====="
+            #print self.pct_stats
+			
         if print_move:
             print ""
-            print "===UPDATE==="
-            print "Start state: " + str(self.state) # + str(start_state)
-            print "Start value: " + str(current_line_str)
+            print "===UPDATE===" + str(self.action_count) + "==="
+            print "Prior state: " + str(self.prior_state)
+            print "Prior line: " + str(prior_line)
+            print "Prior action: " + str(self.action_list[len(self.action_list)-2])
+            print "Prior reward: " + str(self.reward_list[len(self.reward_list)-2])
+            print "Start state: " + str(self.current_state) # + str(start_state)
+            print "Current line: " + str(current_line_str)
+            print "Max Q of Current Line: " + str(max_q_current_state)
             print "Action: " + str(action)
             print "Reward: " + str(reward)
-            print "New values:  " + str(self.states[self.state])
-			
-        #if make_charts:
+            print "Updated prior line: " + str(self.prior_state) + " : " + str(self.states[self.prior_state])
 
 def run():
     """Run the agent for a finite number of trials."""
@@ -192,7 +234,7 @@ def run():
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
-    sim = Simulator(e, update_delay=0.0001, display=True)  # create simulator (uses pygame when display=True, if available)
+    sim = Simulator(e, update_delay=0.00001, display=True)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
     sim.run(n_trials=100)  # run for a specified number of trials
